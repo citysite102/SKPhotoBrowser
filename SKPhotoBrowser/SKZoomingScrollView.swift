@@ -197,10 +197,10 @@ open class SKZoomingScrollView: UIScrollView {
         if let image = photo.underlyingImage {
             
             // transition
-            let transition = CATransition()
-            transition.duration = 0.2
-            transition.type = kCATransitionFade
-            photoImageView.layer.add(transition, forKey: nil)
+//            let transition = CATransition()
+//            transition.duration = 0.2
+//            transition.type = kCATransitionFade
+//            photoImageView.layer.add(transition, forKey: nil)
 
             // image
             photoImageView.image = image
