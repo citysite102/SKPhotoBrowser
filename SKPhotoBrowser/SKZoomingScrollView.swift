@@ -178,13 +178,30 @@ open class SKZoomingScrollView: UIScrollView {
         if !flag {
             if photo.underlyingImage == nil {
                 indicatorView.startAnimating()
+                UIView.animate(withDuration: 0.1,
+                               animations: {
+                                self.indicatorView.alpha = 1.0
+                }, completion: { (_) in
+                })
             }
             photo.loadUnderlyingImageAndNotify()
         } else {
-            indicatorView.stopAnimating()
+            UIView.animate(withDuration: 0.1,
+                           animations: {
+                            self.indicatorView.alpha = 0.0
+            }, completion: { (_) in
+                self.indicatorView.stopAnimating()
+            })
         }
         
         if let image = photo.underlyingImage {
+            
+            // transition
+            let transition = CATransition()
+            transition.duration = 0.2
+            transition.type = kCATransitionFade
+            photoImageView.layer.add(transition, forKey: nil)
+
             // image
             photoImageView.image = image
             photoImageView.contentMode = photo.contentMode
